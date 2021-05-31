@@ -1,6 +1,6 @@
 
 client=$1
-cp -r /home/ubuntu/test /home/ubuntu/$client
+cp -r <The directory where you have your jenkins files> /home/ubuntu/$client
 cd /home/ubuntu/$client && kubectl create namespace $client-test-jenkins
 cd /home/ubuntu/$client && sed -i 's|name: jenkins-pv|name: '$client'-test-jenkins-pv|g' /home/ubuntu/$client/jenkins-volume.yaml
 cd /home/ubuntu/$client && sed -i 's|namespace: jenkins|namespace: '$client'-test-jenkins|g' /home/ubuntu/$client/jenkins-volume.yaml
