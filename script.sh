@@ -27,7 +27,7 @@ sed -i "s|port: 8080|port: $port|g" /home/ubuntu/$client/jenkins-service.yaml
 cd /home/ubuntu/$client && kubectl create -f jenkins-deployment.yaml -n $client-test-jenkins
 cd /home/ubuntu/$client && kubectl create -f jenkins-service.yaml -n $client-test-jenkins
 cp  /home/ubuntu/default.nginx    /home/ubuntu/$client
-cd /home/ubuntu/$client && sudo sed -i 's|server_name jenkins.furhud.org|server_name '$client'-jenkins.furhud.org|g'  /home/ubuntu/$client/default.nginx
+cd /home/ubuntu/$client && sudo sed -i 's|server_name jenkins.furhud.org|server_name < your domain >|g'  /home/ubuntu/$client/default.nginx
 cd /home/ubuntu/$client && sudo sed -i 's|proxy_pass http://localhost:8989;|proxy_pass http://localhost:'$port';|g'  /home/ubuntu/$client/default.nginx
 cd /home/ubuntu/$client && sudo  cp default.nginx /etc/nginx/sites-available/$client-jenkins.conf
 cd /home/ubuntu/$client && sudo ln -s  /etc/nginx/sites-available/$client-jenkins.conf  /etc/nginx/sites-enabled/
