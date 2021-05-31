@@ -1,0 +1,32 @@
+                                  server {
+        listen 80 ;
+        listen [::]:80 ;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name jenkins.furhud.org;
+
+        # Hide version
+        server_tokens off;
+
+        # disable cache control
+        add_header Cache-Control no-cache;
+        expires modified +2d;
+      #set client body size to 500 M
+        client_max_body_size 500M;
+
+        sendfile off;
+
+        location / {
+                proxy_pass http://localhost:8989;
+        }
+
+        location ~* /* {
+                proxy_pass http://localhost:8989;
+        }
+        # gzip
+        gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
+        gzip on;
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
